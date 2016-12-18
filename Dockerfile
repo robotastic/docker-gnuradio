@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM jrottenberg/ffmpeg:3
 
 RUN apt-get update
 RUN apt-get install -y gnuradio gr-osmosdr libhackrf-dev libuhd-dev
