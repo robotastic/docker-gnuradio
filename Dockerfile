@@ -1,13 +1,49 @@
-FROM ubuntu:18.04 AS base
+FROM ubuntu:20.04 AS base
 
-RUN apt-get update
-RUN apt-get install -y gnuradio gnuradio-dev gr-osmosdr libhackrf-dev libuhd-dev
-RUN apt-get install -y git cmake build-essential libboost-all-dev libusb-1.0-0.dev libssl-dev libcurl4-openssl-dev
-RUN apt-get install -y ca-certificates expat libgomp1 fdkaac sox
-# install necessary locales
-RUN apt-get install -y locales \
-    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
-    && locale-gen
-
-RUN apt-get autoremove -y && \
-    apt-get clean -y
+RUN apt-get update && \
+  apt-get -y upgrade &&\
+  # set noninteractive installation
+  export DEBIAN_FRONTEND=noninteractive && \
+  #install tzdata package
+  apt-get install -y \
+    build-essential \
+    cmake \
+    cpp \
+    curl \
+    fdkaac \
+    ffmpeg \
+    gcc \
+    git \
+    gnuradio-dev \
+    gr-osmosdr \
+    hackrf \
+    libaacs0 \
+    libboost-all-dev \
+    libcppunit-1.15-0 \
+    libcppunit-dev \
+    libcurl4 \
+    libcurl4-openssl-dev \
+    libfdk-aac-dev \
+    libfdk-aac1 \
+    libgnuradio-osmosdr0.2.0 \
+    libgnuradio-uhd3.8.1 \
+    libhackrf-dev \
+    libhackrf0 \
+    liborc-0.4-dev \
+    libosmosdr-dev \
+    libosmosdr0 \
+    libsox-dev \
+    libsox3 \
+    libsoxr0 \
+    libssl-dev \
+    libuhd-dev \
+    libuhd3.15.0 \
+    libusb-1.0-0 \
+    libusb-dev \
+    libvo-aacenc0 \
+    make \
+    openssl \
+    osmo-sdr \
+    sox \
+    tzdata && \
+  rm -rf /var/lib/apt/lists/*
